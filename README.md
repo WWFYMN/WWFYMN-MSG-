@@ -1,2 +1,2 @@
 # KMessenger
-Messaging service
+Messaging service.
