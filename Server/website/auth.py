@@ -1,7 +1,3 @@
-import email
-from nis import cat
-from operator import imod
-import re
 from flask import Blueprint,render_template,request,flash,redirect,url_for
 from . import DB
 from .models import User
