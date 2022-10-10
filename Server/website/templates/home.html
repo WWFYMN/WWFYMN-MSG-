@@ -1,3 +1,39 @@
 {% extends "base.html" %} 
 {% block title %}Home{% endblock %}
-{% block content %} <h1>Home page!</h1>{% endblock %}
+{% block content %}
+<h1 align="center">Messages</h1>
+<div style="width:device-width;height:500px;line-height:3em;overflow:scroll;padding:5px;">
+    
+<u1 class="list-group list-group-flush" id="notes">
+    {# {% for mesage in Messages %} #}
+    
+    {% for i in range(100) %}
+    {% if Messages.query.get(i) %}
+
+    <li class="list-group-item"><small>{{ Messages.query.get(i).user }}: </small>{{ Messages.query.get(i).data }}
+        
+        {# <button type="button" class="close" onClick="//deleteNote({{ mesage.id }})"><span aria-hidden="true">&times;</span></button> #}
+
+    </li>
+    {% endif %}
+    {% endfor %}
+</u1>
+</div>
+<br/>
+<form method="POST">
+    <textarea name="note" id="note" class="form-control" placeholder="New notes go here">
+    </textarea>
+
+    <br/>
+    <div align="center">
+        <button type="submit" class="btn btn-primary">Add Note</button>
+
+    </div>
+
+
+</form>
+
+
+
+{% endblock %}
+
