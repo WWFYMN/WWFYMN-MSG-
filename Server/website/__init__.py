@@ -2,7 +2,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from os import path
 from flask_login import LoginManager
-
+from turbo_flask import Turbo
 #Change this
 SECRET_KEY='asdoijasdiojsajiodasj'
 #--------------------
@@ -14,7 +14,8 @@ def create_app():
     app.config['SECRET_KEY']=SECRET_KEY
     app.config['SQLALCHEMY_DATABASE_URI'] = f'sqlite:///{DB_NAME}'
     DB.init_app(app)
-
+    TB = Turbo(app)
+    
     
     from .views import views
     from .auth import auth
