@@ -3,6 +3,7 @@ from .models import Message
 from flask import Blueprint, render_template,request,flash,jsonify
 from flask_login import  login_required, current_user
 from . import DB
+from . import turbo
 from .models import *
 
 import json
@@ -22,6 +23,13 @@ def home():
             new_message = Message(data = message,user=current_user.name)
             DB.session.add(new_message)
             DB.session.commit()
+            #print(turbo.can_stream())
+            #if turbo.can_stream():
+                #print("asd")
+            #turbo.replace(render_template('messages.html', Messages=Message), target='notes')
+            #turbo.push(turbo.replace(render_template('messages.html',Messages=Message), 'notes'))
+
+    
     return render_template("home.html",user=current_user,Messages=Message)
     
 @views.route('/user',methods=["POST","GET"])

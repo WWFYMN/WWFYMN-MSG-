@@ -1,0 +1,14 @@
+<u1 class="list-group list-group-flush" id="notes">
+    {# {% for mesage in Messages %} #}
+    
+    {% for i in range(100) %}
+    {% if Messages.query.get(i) %}
+
+    <li class="list-group-item"><small>{{ Messages.query.get(i).user }}: </small>{{ Messages.query.get(i).data }}
+        
+        {# <button type="button" class="close" onClick="//deleteNote({{ mesage.id }})"><span aria-hidden="true">&times;</span></button> #}
+
+    </li>
+    {% endif %}
+    {% endfor %}
+</u1>
