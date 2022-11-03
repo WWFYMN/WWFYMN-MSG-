@@ -3,27 +3,21 @@
 {% block content %}
 
 
-
 <h1 align="center">Messages</h1>
 <div style="width:device-width;height:55vh;line-height:3em;overflow:scroll;padding:5px;display: flex;
 flex-direction: column-reverse;">
     
 {% include "messages.html" %}
+
 </div>
 <br/>
-<form method="POST">
-    <textarea name="note" id="note" class="form-control" placeholder="New notes go here">
-    </textarea>
-
+<form method="POST" id="form">
+    <textarea name="msg" id="msg" class="form-control" placeholder="Message"></textarea>
     <br/>
     <div align="center">
-        <button type="submit" class="btn btn-primary">Add Note</button>
-
+        <button type="submit" class="btn btn-primary" >Send Message</button>
     </div>
-
-
 </form>
-
 
 
 {% endblock %}

@@ -21,8 +21,11 @@ def update_load(app,M):
     with app.app_context():
         while True:
             sleep(1)
+            rows = int(str(DB.session.query(M).count()))
+            #print(rows)
             #print("ASD")
-            turbo.push(turbo.replace(render_template('messages.html',Messages=M), target='notes'))
+            #print(type(rows))
+            turbo.push(turbo.replace(render_template('messages.html',Messages=M,rows=int(rows)+12), target='messages'))
 
 
 def create_app():

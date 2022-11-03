@@ -16,21 +16,18 @@ views = Blueprint('views', __name__)
 @login_required
 def home():
     if request.method=="POST":
-        message= request.form.get("note")
+        message= request.form.get("msg")
         if len(message)<1:
             flash("Message too short", category="error")
         else:
             new_message = Message(data = message,user=current_user.name)
             DB.session.add(new_message)
             DB.session.commit()
-            #print(turbo.can_stream())
-            #if turbo.can_stream():
-                #print("asd")
-            #turbo.replace(render_template('messages.html', Messages=Message), target='notes')
-            #turbo.push(turbo.replace(render_template('messages.html',Messages=Message), 'notes'))
-
-    
-    return render_template("home.html",user=current_user,Messages=Message)
+            if turbo.can_stream():
+                return turbo.stream(turbo.replace(render_template('form.html'), target='form'),)
+            
+    rows = int(str(DB.session.query(Message).count()))
+    return render_template("home.html",user=current_user,Messages=Message, rows=rows+12)
     
 @views.route('/user',methods=["POST","GET"])
 @login_required
