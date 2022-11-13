@@ -17,14 +17,11 @@ DB_NAME = "database.db"
 turbo=Turbo()
 
 def update_load(app,M):
-    print("asd")
+    
     with app.app_context():
         while True:
             sleep(1)
             rows = int(str(DB.session.query(M).count()))
-            #print(rows)
-            #print("ASD")
-            #print(type(rows))
             turbo.push(turbo.replace(render_template('messages.html',Messages=M,rows=int(rows)+12), target='messages'))
 
 
@@ -43,7 +40,7 @@ def create_app():
     app.register_blueprint(auth, url_prefix='/')
     
 
-    #create_database(app)
+    
     with app.app_context():
         DB.create_all()
     @app.before_first_request

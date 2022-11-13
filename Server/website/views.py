@@ -35,13 +35,14 @@ def user():
 
     return render_template("user.html",user=current_user)
 
-@views.route('/delete-note', methods=["POST"])
+@views.route('/delete-note', methods=["POST"]) 
 def delete_note():
     note = json.loads(request.data)
     noteid= note["noteId"]
     note = Message.query.get(noteid)
     if note:
-        if note.user_id == current_user.id:
-            DB.session.delete(note)
-            DB.session.commit()
+        
+        DB.session.delete(note)
+        DB.session.commit()
+        print("asddsa")
     return jsonify({})

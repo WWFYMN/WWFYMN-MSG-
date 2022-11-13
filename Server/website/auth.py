@@ -41,7 +41,7 @@ def sign_up():
         password = request.form.get("password")
         confpass = request.form.get("password2")
         user = User.query.filter_by(email=email).first()
-        #print(password , len(password) < 8 and password.lower==password and hasNumbers(password)==False)
+        
         if user:
             flash("User already exists",category="error")
         

@@ -1,7 +1,11 @@
 <form method="POST" id="form">
-    <textarea name="msg" id="msg" class="form-control" placeholder="Message"></textarea>
+    <input onkeyup="if(event.keyCode===13){submit.click()}" name="msg" id="msg" class="form-control" placeholder="Message">
+ 
     <br/>
     <div align="center">
         <button type="submit" class="btn btn-primary" >Send Message</button>
     </div>
 </form>
+<script>var input = document.getElementById("form");
+
+// Execute a function when the user releases a key on the keyboard
