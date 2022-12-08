@@ -5,6 +5,6 @@ app = create_app()
 
 
 if __name__=='__main__':
-    app.run(host="192.168.1.13",port=80)
+    app.run(host="192.168.1.12",port=80,debug=True)
     
     

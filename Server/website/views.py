@@ -3,7 +3,6 @@ from .models import Message
 from flask import Blueprint, render_template,request,flash,jsonify
 from flask_login import  login_required, current_user
 from . import DB
-from . import turbo
 from .models import *
 
 import json
@@ -23,8 +22,7 @@ def home():
             new_message = Message(data = message,user=current_user.name)
             DB.session.add(new_message)
             DB.session.commit()
-            if turbo.can_stream():
-                return turbo.stream(turbo.replace(render_template('form.html'), target='form'),)
+
             
     rows = int(str(DB.session.query(Message).count()))
     return render_template("home.html",user=current_user,Messages=Message, rows=rows+12)
@@ -35,14 +33,9 @@ def user():
 
     return render_template("user.html",user=current_user)
 
-@views.route('/delete-note', methods=["POST"]) 
-def delete_note():
-    note = json.loads(request.data)
-    noteid= note["noteId"]
-    note = Message.query.get(noteid)
-    if note:
-        
-        DB.session.delete(note)
-        DB.session.commit()
-        print("asddsa")
-    return jsonify({})
+@views.route('/Update',methods=["POST","GET"])
+@login_required
+def Update():
+    rows = int(str(DB.session.query(Message).count()))
+    return render_template("messages.html",user=current_user,Messages=Message, rows=rows+12)
+

@@ -1,6 +1,6 @@
 {% extends "base.html" %} 
 {% block title %}Home{% endblock %}
-{% block head %}{{ turbo() }}{% endblock %}
+
 {% block content %}
 
 
@@ -10,7 +10,10 @@
 flex-direction: column-reverse;">
     
 {% include "messages.html" %}
-
+<script>setInterval(function() {fetch('/Update').then(function (response) {
+	//console.log("response.text()")
+	return response.text();
+}).then((res) => document.getElementById("messages").innerHTML =res).catch((err) => console.log(err));},1000)</script>
 </div>
 <br/>
 {% include "form.html" %}

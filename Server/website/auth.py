@@ -20,8 +20,9 @@ def login():
                 flash("Logged in", category="success")
                 login_user(user,remember=True)
                 return redirect(url_for("views.home"))
-            else:
-                flash("Incorrect password or email", category="error")
+            
+        else:
+                flash("Incorrect Email or Password", category="error")
     
     return render_template("login.html", user=current_user)
     
@@ -40,9 +41,9 @@ def sign_up():
         name = request.form.get("name")
         password = request.form.get("password")
         confpass = request.form.get("password2")
-        user = User.query.filter_by(email=email).first()
+        user = User.query.filter_by(email=email).first();nam = User.query.filter_by(name=name).first()
         
-        if user:
+        if user or nam:
             flash("User already exists",category="error")
         
         elif len(email)<4:
