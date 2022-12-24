@@ -33,9 +33,13 @@ def user():
 
     return render_template("user.html",user=current_user)
 
-@views.route('/Update',methods=["POST","GET"])
+@views.route('/Update',methods=["GET"])
 @login_required
 def Update():
     rows = int(str(DB.session.query(Message).count()))
     return render_template("messages.html",user=current_user,Messages=Message, rows=rows+12)
-
+@views.route('/Latest',methods=["GET"])
+@login_required
+def Latest():
+    rows = int(str(DB.session.query(Message).count()))
+    return Message.query.get(rows).data

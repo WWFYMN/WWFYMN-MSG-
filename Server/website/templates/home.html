@@ -10,10 +10,17 @@
 flex-direction: column-reverse;">
     
 {% include "messages.html" %}
-<script>setInterval(function() {fetch('/Update').then(function (response) {
+<script>var audio = new Audio("/static/Ring.wav");txt2="";
+  ;setInterval(function() {
+	
+	fetch('/Latest')
+	.then(response => response.text())
+	.then(data => txt=data)
+	.catch(err => console.error(err));
+	fetch('/Update').then(function (resp) {
 	//console.log("response.text()")
-	return response.text();
-}).then((res) => document.getElementById("messages").innerHTML =res).catch((err) => console.log(err));},1000)</script>
+	return resp.text();
+}).then(function(res){if(txt2==txt){ console.log(document.hidden); } else{console.log(document.hidden);document.getElementById("messages").innerHTML = res;console.log(txt);txt2=txt;if(document.hidden){audio.play()}}}).catch((err) => console.log(err));},1000)</script>
 </div>
 <br/>
 {% include "form.html" %}

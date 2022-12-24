@@ -1,7 +1,2 @@
-<u1 class="list-group list-group-flush" id="messages">
-    {% for i in range(0,rows) %}
-    {% if Messages.query.get(i) %}
-    <li class="list-group-item"><small>{{ Messages.query.get(i).user }}: </small>{{ Messages.query.get(i).data }}</li>
-    {% endif %}
-    {% endfor %}
-</u1>
+<u1 class="list-group list-group-flush" id="messages">{% for i in range(0,rows) %}{% if Messages.query.get(i) %}<li class="list-group-item"><small>{{ Messages.query.get(i).user }}: </small>{{ Messages.query.get(i).data }}</li>
+{% endif %}{% endfor %}</u1>{# {% if new %}<script id="Play">console.log("a");audio.play();</script>{% endif %} #}
